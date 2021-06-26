@@ -7,6 +7,7 @@
 
 import Foundation
 
+///Element to store into Set
 struct Element<T: Equatable> {
     enum Operation {
         case add
@@ -18,6 +19,7 @@ struct Element<T: Equatable> {
     let operation: Operation
 }
 
+///Sort based on timestamp
 extension Element: Comparable {
     static func < (lhs: Element<T>,
                    rhs: Element<T>) -> Bool {

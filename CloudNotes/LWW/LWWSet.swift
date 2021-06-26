@@ -10,19 +10,19 @@ import Foundation
 ///(Last-Write-Wins)LWW-element-set class from CRDT
 
 class LWWSet<T: Equatable> {
+    // MARK: - Private scope
     private var elements = [Element<T>]()
+
+    ///To maintain thread safety using private concurrent queue
     private let queue = DispatchQueue(label: "com.lwwset",
                                       attributes: .concurrent)
+
     private var safeElements: [Element<T>] {
         var values: [Element<T>]?
         queue.sync { [unowned self] in
             values = self.elements
         }
         return values ?? []
-    }
-
-    func add(_ value: T) {
-        append(value, operation: .add)
     }
 
     private func append(_ value: T,
@@ -33,12 +33,22 @@ class LWWSet<T: Equatable> {
         }
     }
 
+    // MARK: - Public scope
+
+    ///This method adds the element into the set
+    func add(_ value: T) {
+        append(value, operation: .add)
+    }
+
+    ///This method removes the element from the LWW
     func remove(_ value: T) {
         if exist(value) {
             append(value, operation: .remove)
         }
     }
 
+    ///Fetch all the available values
+    ///Ignoring deleted values
     func values() -> [T] {
         var result = [T]()
         for element in self.safeElements {
@@ -52,6 +62,7 @@ class LWWSet<T: Equatable> {
         return result
     }
 
+    /// This method check whether a given element is in LWW
     func exist(_ value: T) -> Bool {
         guard let element = safeElements.last(where: {$0.value == value}) else {
             return false
@@ -59,6 +70,7 @@ class LWWSet<T: Equatable> {
         return element.operation == .add
     }
 
+    ///This method merge the LWW with the given LWW and returns a new LWW
     func merge(_ set: LWWSet<T>) -> LWWSet<T> {
         let mergedSet = LWWSet<T>()
         mergedSet.elements.append(contentsOf: self.safeElements)

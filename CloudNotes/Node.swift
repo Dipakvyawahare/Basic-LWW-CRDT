@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// Container Node for each character
 struct Node: Equatable {
     let location: Int
     let character: Character
