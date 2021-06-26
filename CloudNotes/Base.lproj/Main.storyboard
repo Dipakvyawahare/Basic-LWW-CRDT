@@ -1,24 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="CloudNotes" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cloud Notes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LZE-mt-PyV">
+                                <rect key="frame" x="160" y="74" width="94.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="User 1 " textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NZz-Km-AFH">
+                                <rect key="frame" x="20" y="125" width="374" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" smartQuotesType="no"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="XzV-vc-Tmi"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="User 2" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xym-fY-l6V">
+                                <rect key="frame" x="20" y="189" width="374" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" smartDashesType="no" smartQuotesType="no"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="RHs-Gr-G1P"/>
+                                </connections>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s0d-YQ-DNg">
+                                <rect key="frame" x="20" y="253" width="374" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="s0d-YQ-DNg" firstAttribute="top" secondItem="xym-fY-l6V" secondAttribute="bottom" constant="30" id="FZ4-ty-oYr"/>
+                            <constraint firstItem="NZz-Km-AFH" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="LLv-34-0a5"/>
+                            <constraint firstItem="NZz-Km-AFH" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Ove-1Z-Xx2"/>
+                            <constraint firstItem="LZE-mt-PyV" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="30" id="cn3-4G-54z"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="NZz-Km-AFH" secondAttribute="trailing" constant="20" id="cob-IE-g1K"/>
+                            <constraint firstItem="xym-fY-l6V" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="fcE-dG-GhG"/>
+                            <constraint firstItem="NZz-Km-AFH" firstAttribute="top" secondItem="LZE-mt-PyV" secondAttribute="bottom" constant="30" id="hEF-Tq-Nsk"/>
+                            <constraint firstItem="s0d-YQ-DNg" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="n6v-He-UNn"/>
+                            <constraint firstItem="xym-fY-l6V" firstAttribute="top" secondItem="NZz-Km-AFH" secondAttribute="bottom" constant="30" id="nCB-Ym-RY8"/>
+                            <constraint firstItem="s0d-YQ-DNg" firstAttribute="leading" secondItem="xym-fY-l6V" secondAttribute="leading" id="nM0-1u-0Mq"/>
+                            <constraint firstItem="xym-fY-l6V" firstAttribute="leading" secondItem="NZz-Km-AFH" secondAttribute="leading" id="oXd-4B-MNk"/>
+                            <constraint firstItem="LZE-mt-PyV" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="pWb-ha-Kpq"/>
+                            <constraint firstItem="xym-fY-l6V" firstAttribute="trailing" secondItem="NZz-Km-AFH" secondAttribute="trailing" id="r05-ye-tW9"/>
+                            <constraint firstItem="s0d-YQ-DNg" firstAttribute="trailing" secondItem="xym-fY-l6V" secondAttribute="trailing" id="wii-G3-Uwd"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="mergedLabel" destination="s0d-YQ-DNg" id="4Ho-rG-6qa"/>
+                        <outlet property="textField1" destination="NZz-Km-AFH" id="xQ6-wd-a1q"/>
+                        <outlet property="textField2" destination="xym-fY-l6V" id="2H3-ZQ-LUV"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="68" y="81"/>
         </scene>
     </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>
