@@ -14,20 +14,20 @@ class LWWSetTests: XCTestCase {
     func testAdd() {
         let value = "1"
         subjectUnderTest.add(value)
-        assert(subjectUnderTest.values().contains(value), "Add Test failed")
+        XCTAssert(subjectUnderTest.values().contains(value), "Add Test failed")
     }
 
     func testRemoveEmpty() {
         let value = "1"
         subjectUnderTest.remove(value)
-        assert(subjectUnderTest.values().contains(value) == false, "Remove Test failed")
+        XCTAssert(subjectUnderTest.values().contains(value) == false, "Remove Test failed")
     }
 
     func testRemoveFilled() {
         let value = "1"
         subjectUnderTest.add(value)
         subjectUnderTest.remove(value)
-        assert(subjectUnderTest.values().contains(value) == false, "Remove Test failed")
+        XCTAssert(subjectUnderTest.values().contains(value) == false, "Remove Test failed")
     }
 
     func testRemoveNotExist() {
@@ -35,7 +35,7 @@ class LWWSetTests: XCTestCase {
         let value2 = "2"
         subjectUnderTest.add(value)
         subjectUnderTest.remove(value2)
-        assert(subjectUnderTest.values().contains(value2) == false, "Remove Test failed")
+        XCTAssert(subjectUnderTest.values().contains(value2) == false, "Remove Test failed")
     }
 
     func testValues() {
@@ -43,7 +43,7 @@ class LWWSetTests: XCTestCase {
         let value2 = "2"
         subjectUnderTest.add(value1)
         subjectUnderTest.add(value2)
-        assert(subjectUnderTest.values().count == 2, "Values Test failed")
+        XCTAssert(subjectUnderTest.values().count == 2, "Values Test failed")
     }
 
     func testMerge() {
@@ -53,6 +53,6 @@ class LWWSetTests: XCTestCase {
         otherSet.add(value1)
         subjectUnderTest.add(value2)
         let mergedSet = subjectUnderTest.merge(otherSet)
-        assert(mergedSet.values().count == 2, "Merge Test failed")
+        XCTAssert(mergedSet.values().count == 2, "Merge Test failed")
     }
 }

@@ -30,6 +30,6 @@ class CloudNotesUITests: XCTestCase {
         app.keys["delete"].tap()
 
         let label = app.staticTexts["qwert"]
-        assert(label.waitForExistence(timeout: 2), "Notes UITest failed")
+        XCTAssert(label.waitForExistence(timeout: 2), "Notes UITest failed")
     }
 }
