@@ -110,8 +110,8 @@
 				47E8406B26875E2600AE35C0 /* LWW */,
 				47E8403526875E0D00AE35C0 /* AppDelegate.swift */,
 				47E8403726875E0D00AE35C0 /* SceneDelegate.swift */,
-				47E8403926875E0D00AE35C0 /* ViewController.swift */,
-				47E8407F268768AB00AE35C0 /* Node.swift */,
+				47E840962687745200AE35C0 /* Views */,
+				47E840922687744700AE35C0 /* Model */,
 				47E840762687686B00AE35C0 /* Extension */,
 				47E8403B26875E0D00AE35C0 /* Main.storyboard */,
 				47E8403E26875E0F00AE35C0 /* Assets.xcassets */,
@@ -154,6 +154,22 @@
 				47E840772687687F00AE35C0 /* String+Extension.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		47E840922687744700AE35C0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				47E8407F268768AB00AE35C0 /* Node.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		47E840962687745200AE35C0 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				47E8403926875E0D00AE35C0 /* ViewController.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
