@@ -17,12 +17,12 @@ class LWWSet<T: Equatable> {
     private let queue = DispatchQueue(label: "com.lwwset",
                                       attributes: .concurrent)
 
-    private var safeElements: [Element<T>] {
+    private var sortedElements: [Element<T>] {
         var values: [Element<T>]?
         queue.sync { [unowned self] in
             values = self.elements
         }
-        return values ?? []
+        return values?.sorted() ?? []
     }
 
     private func append(_ value: T,
@@ -51,12 +51,14 @@ class LWWSet<T: Equatable> {
     ///Ignoring deleted values
     func values() -> [T] {
         var result = [T]()
-        for element in self.safeElements {
+        for element in self.sortedElements {
             switch element.operation {
             case .add:
                 result.append(element.value)
             case .remove:
-                result.removeAll(where: {$0 == element.value})
+                if let index = result.lastIndex(of: element.value) {
+                    result.remove(at: index)
+                }
             }
         }
         return result
@@ -64,7 +66,7 @@ class LWWSet<T: Equatable> {
 
     /// This method check whether a given element is in LWW
     func exist(_ value: T) -> Bool {
-        guard let element = safeElements.last(where: {$0.value == value}) else {
+        guard let element = sortedElements.last(where: {$0.value == value}) else {
             return false
         }
         return element.operation == .add
@@ -73,8 +75,8 @@ class LWWSet<T: Equatable> {
     ///This method merge the LWW with the given LWW and returns a new LWW
     func merge(_ set: LWWSet<T>) -> LWWSet<T> {
         let mergedSet = LWWSet<T>()
-        mergedSet.elements.append(contentsOf: self.safeElements)
-        mergedSet.elements.append(contentsOf: set.safeElements)
+        mergedSet.elements.append(contentsOf: self.sortedElements)
+        mergedSet.elements.append(contentsOf: set.sortedElements)
         mergedSet.elements.sort()
         return mergedSet
     }
